@@ -1,0 +1,74 @@
+Timing Information:
+-------------------
+
+Extra Large Array
+-----------------
+Time to run code with push(): 4.432 ms
+Time to run code with unshift(): 830.8383 ms
+
+Large Array
+-----------
+Time to run code with push(): 561.1 μs
+Time to run code with unshift(): 8.5851 ms
+
+Medium Array
+------------
+Time to run code with push(): 147 μs
+Time to run code with unshift(): 153.1 μs
+
+Small Array
+-----------
+Time to run code with push(): 113.9 μs
+Time to run code with unshift(): 45 μs
+
+Tiny Array
+----------
+Time to run code with push(): 124.3 μs
+Time to run code with unshift(): 36.1 μs
+
+
+----------------------------------------------------------------------------------------------------
+Questions: How does each function “scale”? Which of the two functions scales better? How can you tell?
+
+Answers:
+From the provided timing information across arrays of varying sizes, 
+it's evident that the performance of the push() and unshift() methods differs significantly depending on the size of the array. 
+In general, push() consistently outperforms unshift() across the larger array sizes. 
+This is indicated by the significantly lower execution times for push() compared to unshift() in each case.
+
+When looking at how each function scales, we observe that the time taken by push() tends to increase gradually 
+as the size of the array grows, but it does so relatively slowly. 
+On the other hand, the time taken by unshift() increases more dramatically with larger array sizes, 
+exhibiting a less efficient scaling behavior.
+
+This difference in scaling behavior suggests that push() scales better than unshift() for adding elements to arrays, 
+particularly as the size of the array increases. The better scaling of push() can be attributed to 
+its operation of adding elements to the end of the array, which typically involves less overhead 
+compared to adding elements to the beginning of the array, as done by unshift(). 
+Therefore, for optimal performance, especially with larger arrays, 
+it's advisable to use push() over unshift() for adding elements.
+
+
+------------------------------------------------------------------------------------------------------------------------
+Questions: Do some review / research on why the slower function is so slow, and summarize the reasoning for this.
+
+Answers: 
+The disparity in performance between the push() and unshift() methods can be attributed to 
+how they operate internally within JavaScript arrays.
+
+push() method adds elements to the end of an array. 
+It has a straightforward operation, typically involving just a single operation to append an element to the array. 
+As a result, its time complexity is O(1), meaning it executes in constant time regardless of the size of the array. 
+This explains why push() performs consistently well across arrays of different sizes.
+
+In contrast, the unshift() method adds elements to the beginning of an array. 
+Unlike push(), adding an element to the beginning of an array requires reindexing all existing elements, 
+shifting them one position to the right. This operation becomes increasingly expensive as the size of the array grows 
+because it needs to move more elements. As a result, the time complexity of unshift() is O(n), 
+where n is the number of elements in the array. 
+This means that the execution time of unshift() increases linearly with the size of the array. 
+Hence, it becomes significantly slower compared to push() when dealing with larger arrays.
+
+Therefore, the main reason for the slow performance of the unshift() method, 
+especially with larger arrays, is its linear time complexity due to the need for reindexing existing elements, 
+whereas push() maintains its constant time complexity regardless of the array size.
